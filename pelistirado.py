@@ -25,6 +25,24 @@ def sinopsisdada(doc):
             listas.append(i["title"])
     return listas
 
+def actorpedido(doc):
+    pelisactor=[]
+    actor=input("Introduzca un actor o actriz: ")
+    print("")
+    print("%s ha trabajado en las siguientes películas: " %(actor))
+    print("")
+    for i in doc:
+        for b in i["actors"]:
+            if b==actor:
+                pelisactor.append(i["title"])
+    return pelisactor
+
+def urlposter(doc):
+    fecha1=input("Introduzca la primera fecha: ")
+    fecha2=input("Introduzca la segunda fecha: ")
+
+
+
 with open("movies.json") as pelis:
     doc=json.load(pelis)
 
@@ -47,6 +65,14 @@ while True:
     elif opcion==3:
         for i in sinopsisdada(doc):
             print("->",i)
+        print("")
+    elif opcion==4:
+        for i in actorpedido(doc):
+            print("-",i)
+        print("")
+    elif opcion==5:
+        for i in urlposter(doc):
+            print("-",i)
         print("")
     elif opcion==0:
         print("Adios")
