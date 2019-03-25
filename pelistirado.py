@@ -13,6 +13,18 @@ def cuentaactores(doc):
         print("Número de actores/actrices: ",len(i["actors"]))
         print("")
 
+def sinopsisdada(doc):
+    listas=[]
+    p1=input("Introduzca la primera palabra: ")
+    p2=input("Introduzca la segunda palabra: ")
+    print("")
+    print("Las palabras %s y %s pertenecen a la sinopsis de la/s película/s: "  %(p1,p2))
+    print("")
+    for i in doc:
+        if p1 and p2 in i["storyline"]:
+            listas.append(i["title"])
+    return listas
+
 with open("movies.json") as pelis:
     doc=json.load(pelis)
 
@@ -32,6 +44,10 @@ while True:
     elif opcion==2:
         print("")
         cuentaactores(doc)
+    elif opcion==3:
+        for i in sinopsisdada(doc):
+            print("->",i)
+        print("")
     elif opcion==0:
         print("Adios")
         break
